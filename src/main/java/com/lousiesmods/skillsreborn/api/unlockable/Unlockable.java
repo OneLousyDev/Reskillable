@@ -6,6 +6,7 @@ import com.lousiesmods.skillsreborn.api.ReskillableRegistries;
 import com.lousiesmods.skillsreborn.api.data.RequirementHolder;
 import com.lousiesmods.skillsreborn.api.skill.Skill;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -77,10 +78,10 @@ public abstract class Unlockable extends IForgeRegistryEntry.Impl<Unlockable> im
         icon = newIcon;
     }
 
-    public void onUnlock(EntityPlayer player) {
+    public void onUnlock(PlayerEntity player) {
     }
 
-    public void onLock(EntityPlayer player) {
+    public void onLock(PlayerEntity player) {
     }
 
     public boolean hasSpikes() {

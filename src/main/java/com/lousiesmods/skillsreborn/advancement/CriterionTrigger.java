@@ -14,50 +14,62 @@ import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public abstract class CriterionTrigger<T extends CriterionListeners<U>, U extends ICriterionInstance> implements ICriterionTrigger<U> {
+public abstract class CriterionTrigger<T extends CriterionListeners<U>, U extends ICriterionInstance> implements ICriterionTrigger<U>
+{
     private final ResourceLocation id;
     private final Function<PlayerAdvancements, T> createNew;
     private final Map<PlayerAdvancements, T> listeners = Maps.newHashMap();
 
-    protected CriterionTrigger(ResourceLocation id, Function<PlayerAdvancements, T> createNew) {
+    protected CriterionTrigger(ResourceLocation id, Function<PlayerAdvancements, T> createNew)
+    {
         this.id = id;
         this.createNew = createNew;
     }
 
     @Override
-    public ResourceLocation getId() {
+    public ResourceLocation getId()
+    {
         return id;
     }
 
     @Override
-    public void addListener(PlayerAdvancements playerAdvancements, Listener<U> listener) {
+    public void addListener(PlayerAdvancements playerAdvancements, Listener<U> listener)
+    {
         T listeners = this.listeners.get(playerAdvancements);
-        if (listeners == null) {
+
+        if (listeners == null)
+        {
             listeners = createNew.apply(playerAdvancements);
             this.listeners.put(playerAdvancements, listeners);
         }
+
         listeners.add(listener);
     }
 
     @Override
-    public void removeListener(PlayerAdvancements playerAdvancements, Listener<U> listener) {
+    public void removeListener(PlayerAdvancements playerAdvancements, Listener<U> listener)
+    {
         T listeners = this.listeners.get(playerAdvancements);
 
-        if (listeners != null) {
+        if (listeners != null)
+        {
             listeners.remove(listener);
-            if (listeners.isEmpty()) {
+            if (listeners.isEmpty())
+            {
                 this.listeners.remove(playerAdvancements);
             }
         }
     }
 
     @Nullable
-    public T getListeners(PlayerAdvancements playerAdvancements) {
+    public T getListeners(PlayerAdvancements playerAdvancements)
+    {
         return this.listeners.get(playerAdvancements);
     }
 
     @Override
-    public void removeAllListeners(PlayerAdvancements playerAdvancements) {
+    public void removeAllListeners(PlayerAdvancements playerAdvancements)
+    {
         this.listeners.remove(playerAdvancements);
     }
 }

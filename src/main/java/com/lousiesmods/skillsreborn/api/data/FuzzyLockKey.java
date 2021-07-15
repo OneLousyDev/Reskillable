@@ -1,6 +1,7 @@
 package com.lousiesmods.skillsreborn.api.data;
 
-public interface FuzzyLockKey extends LockKey {
+public interface FuzzyLockKey extends LockKey
+{
     /**
      * Self is the full lock and other is the partial data.
      *

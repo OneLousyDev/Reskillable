@@ -1,4 +1,5 @@
 package com.lousiesmods.skillsreborn.api.data;
 
-public interface LockKey {
+public interface LockKey
+{
 }
